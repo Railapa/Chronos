@@ -1,7 +1,19 @@
-export const App = ({texto}) => {
-    return(
-        <div>
-            <h1>{texto}</h1>
-        </div>
+import './styles/global.css'
+import './styles/theme.css'
+
+import { Container } from './components/Container'
+import { Heading } from './components/Heading'
+
+export const App = () => {
+    return (
+        <>
+            <Container>
+                <Heading>adfgsdf</Heading>
+            </Container>
+
+            <Container>
+                <Heading>dfgsdfg</Heading>
+            </Container>
+        </>
     )
 } 
