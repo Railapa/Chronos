@@ -4,11 +4,11 @@ type ContainerProps = {
     children: React.ReactNode
 }
 
-export const Container = ({ Children }: ContainerProps) => {
+export const Container = ({ children }: ContainerProps) => {
     return(
          <div className={styles.container}>
             <div className={styles.content}>
-                {Children}
+                {children}
             </div>
         </div>
     )

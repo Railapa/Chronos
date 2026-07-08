@@ -4,11 +4,11 @@ type HeadingProps = {
     children: React.ReactNode;
 }
 
-export const Heading = (props: HeadingProps) => {
+export const Heading = ({ children }: HeadingProps) => {
     return(
         <div>
             <h1 className={styles.heading}>
-                {props.children}
+                {children}
             </h1>
         </div>
     )

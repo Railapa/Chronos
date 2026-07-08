@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} 
 
 html {
   font-size: 62.5%;
@@ -30,4 +30,17 @@ body {
   justify-content: center;
   flex-direction: column;
   gap: 2.4rem;
+}
+
+.container-fluid{
+    max-width: auto;
+}
+
+.container{
+    max-width: 98rem;
+    margin: 0 auto;
+}
+
+.content{
+    margin: 3.2rem;
 }
