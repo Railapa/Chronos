@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Menu.module.css'
 import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from 'lucide-react'
 
@@ -18,6 +18,9 @@ export const Menu = () => {
         })
     }
 
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme)
+    }, [theme])
 
     return(
         <nav className={styles.menu}>
