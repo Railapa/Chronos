@@ -10,31 +10,11 @@ import { Cycles } from './components/Cycles/Cycles'
 import { DefaultButton } from './components/DefaultButton/DefaultButton'
 import { PlayCircleIcon } from 'lucide-react'
 import { Footer } from './components/Footer/Footer'
-import { useState } from 'react'
 
 export const App = () => {
-
-    const [numberLikes, setNumberLikes] = useState(0)
-    const [like, setLike] = useState(false)
-
-    function handleClick(){
-        setLike(prevState => !prevState)
-        setNumberLikes(prevState => like ? prevState - 1 : prevState + 1)
-    }
-
-    const styleButton = {
-        backgroundColor: like ? '#1877f2' : '#e4e6eb',
-        color: like ? '#fff' : '#000'
-    }
     
     return (
         <>
-
-            <h1>
-                <button style={styleButton} onClick={handleClick}>{like ? 'Curtido' : 'Curtir'}</button>
-                <span>{numberLikes}</span>
-            </h1>
-
             <Container>
                 <Logo />
             </Container>
