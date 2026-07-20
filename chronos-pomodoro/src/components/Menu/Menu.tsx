@@ -10,7 +10,6 @@ export const Menu = () => {
 
     function handleThemeChange(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>){
         event.preventDefault()
-        console.log('oi', Date.now())
 
         setTheme(preveTheme => {
             const nextTheme = preveTheme === 'dark' ? 'light' : 'dark'
