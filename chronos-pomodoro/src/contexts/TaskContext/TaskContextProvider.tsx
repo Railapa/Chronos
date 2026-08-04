@@ -1,9 +1,10 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { TaskContext } from "./TaskContext";
 import { initialTaskState } from "./initialTaskState";
 import { taskReducer } from "./taskReducer";
 import { TimerWorkerManager } from "../../workers/TimerWorkerManage";
 import { TaskActionTypes } from "./taskActions";
+import { loadBeep } from "../../utils/loadBeep";
 
 type TaskContextProviderProps = {
   children: React.ReactNode;
@@ -12,37 +13,46 @@ type TaskContextProviderProps = {
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
 
   const [state, dispatch] = useReducer(taskReducer, initialTaskState)
+  const playBeepRef = useRef<() => void | null>(null)
 
   const worker = TimerWorkerManager.getInstance()
 
-  worker.onmessage(e => {
-    const countDownSeconds = e.data
-    console.log(countDownSeconds)
-
-    if (countDownSeconds <= 0) {
-      dispatch({
-        type: TaskActionTypes.COMPLETE_TASK,
-      })
-      worker.terminate()
-    } else {
-      dispatch({
-        type: TaskActionTypes.COUNT_DOWN,
-        payload: { secondsRemaining: countDownSeconds }
-      })
-    }
-  })
+  useEffect(() => {
+    worker.onmessage(e => {
+      const countDownSeconds = e.data
+  
+      if (countDownSeconds <= 0) {
+  
+        if(playBeepRef.current){
+          playBeepRef.current()
+        }
+  
+        dispatch({
+          type: TaskActionTypes.COMPLETE_TASK,
+        })
+        worker.terminate()
+      } else {
+        dispatch({
+          type: TaskActionTypes.COUNT_DOWN,
+          payload: { secondsRemaining: countDownSeconds }
+        })
+      }
+    })
+  }, [worker])
 
   useEffect(() => {
-    console.log(state)
     if (!state.activeTask) {
-      console.log('Worker terminado')
       worker.terminate()
     }
 
     worker.postMessage(state)
   }, [state, worker])
 
-
+useEffect(() => {
+  if(state.activeTask && playBeepRef.current === null){
+    playBeepRef.current = loadBeep()
+  }
+}, [state.activeTask])
 
   return (
     <TaskContext.Provider value={{ state, dispatch }}>
