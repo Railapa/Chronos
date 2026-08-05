@@ -14,6 +14,7 @@ import { showMessage } from '../../adapter/showMessage'
 export const MainForm = () => {
   const { state, dispatch } = useTaskContext()
   const taskNameInput = useRef<HTMLInputElement>(null)
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || ''
 
   const nextCycle = GetNextCycle(state.currentCycle)
   const nextCycleType = getNextCycleType(nextCycle)
@@ -66,6 +67,7 @@ export const MainForm = () => {
           placeholder="Digite algo"
           ref={taskNameInput}
           disabled={state.activeTask ? true : false}
+          defaultValue={lastTaskName}
         />
       </div>
 
