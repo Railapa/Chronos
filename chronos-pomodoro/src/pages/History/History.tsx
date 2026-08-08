@@ -40,7 +40,7 @@ export const History = () => {
     }
 
     function handleResetHistory() {
-        if (!confirm('Tem certeza')) return
+        if (!confirm('Tem certeza que quer apagar todo o hitórico?')) return
 
         dispatch({ type: TaskActionTypes.RESET_STATE })
     }
