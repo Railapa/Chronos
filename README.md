@@ -1,7 +1,3 @@
-### 2. `Chronos` (`[https://github.com/Railapa/Chronos](https://github.com/Railapa/Chronos)`)
-* **Descrição sugerida (About):** `Aplicação de produtividade baseada na técnica Pomodoro com controle de ciclos, tarefas e histórico de foco.`
-
-```markdown
 # ⏱️ Chronos Pomodoro
 
 Aplicação web de gestão de tempo e produtividade baseada na técnica Pomodoro, permitindo alternar entre ciclos de foco e descanso enquanto organiza tarefas da sessão.
